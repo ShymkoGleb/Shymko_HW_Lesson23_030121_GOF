@@ -2,7 +2,7 @@ package com.example.shymko_hw_lesson23_030121_gof.Structural.Adapter
 
 
 fun main() {
-    // Round fits round, no surprise.
+
     val hole = RoundHole(5)
     val rpeg = RoundPeg(5)
     if (hole.fits(rpeg)) {
@@ -10,9 +10,7 @@ fun main() {
     }
     val smallSqPeg = SquarePeg(2)
     val largeSqPeg = SquarePeg(20)
-    // hole.fits(smallSqPeg); // Won't compile.
 
-    // Adapter solves the problem.
     val smallSqPegAdapter = SquarePegAdapter(smallSqPeg)
     val largeSqPegAdapter = SquarePegAdapter(largeSqPeg)
     if (hole.fits(smallSqPegAdapter)) {
