@@ -1,9 +1,9 @@
 package com.example.shymko_hw_lesson23_030121_gof.Behavioral.Chain.ChainOfResponsibility
 
+@Suppress("DEPRECATION")
 class ThrottlingMiddleware(private val requestPerMinute: Int) : Middleware() {
     private var request = 0
-    private var currentTime: Long
-
+    private var currentTime: Long = System.currentTimeMillis()
     /**
      * Please, not that checkNext() call can be inserted both in the beginning
      * of this method and in the end.
@@ -12,7 +12,7 @@ class ThrottlingMiddleware(private val requestPerMinute: Int) : Middleware() {
      * objects. For instance, an element of a chain can change the order of
      * checks by running its check after all other checks.
      */
-    override fun check(email: String?, password: String?): Boolean {
+    override fun check(email: String, password: String): Boolean {
         if (System.currentTimeMillis() > currentTime + 60000) {
             request = 0
             currentTime = System.currentTimeMillis()
@@ -23,9 +23,5 @@ class ThrottlingMiddleware(private val requestPerMinute: Int) : Middleware() {
             Thread.currentThread().stop()
         }
         return checkNext(email, password)
-    }
-
-    init {
-        currentTime = System.currentTimeMillis()
     }
 }

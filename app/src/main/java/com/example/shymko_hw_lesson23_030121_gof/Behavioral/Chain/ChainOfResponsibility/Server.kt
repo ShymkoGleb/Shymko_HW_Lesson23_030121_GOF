@@ -2,13 +2,13 @@ package com.example.shymko_hw_lesson23_030121_gof.Behavioral.Chain.ChainOfRespon
 
 class Server {
     private val users: MutableMap<String, String> = HashMap()
-    private var middleware: Middleware? = null
+    private lateinit var middleware: Middleware
 
     /**
      * Client passes a chain of object to server. This improves flexibility and
      * makes testing the server class easier.
      */
-    fun setMiddleware(middleware: Middleware?) {
+    fun setMiddleware(middleware: Middleware) {
         this.middleware = middleware
     }
 
@@ -16,8 +16,8 @@ class Server {
      * Server gets email and password from client and sends the authorization
      * request to the chain.
      */
-    fun logIn(email: String?, password: String?): Boolean {
-        if (middleware!!.check(email, password)) {
+    fun logIn(email: String, password: String): Boolean {
+        if (middleware.check(email, password)) {
             println("Authorization have been successful!")
 
             // Do something useful here for authorized users.
@@ -30,11 +30,11 @@ class Server {
         users[email] = password
     }
 
-    fun hasEmail(email: String?): Boolean {
+    fun hasEmail(email: String): Boolean {
         return users.containsKey(email)
     }
 
-    fun isValidPassword(email: String?, password: String?): Boolean {
+    fun isValidPassword(email: String, password: String): Boolean {
         return users[email] == password
     }
 }

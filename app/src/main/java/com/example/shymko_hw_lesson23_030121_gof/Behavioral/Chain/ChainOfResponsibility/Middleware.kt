@@ -3,28 +3,23 @@ package com.example.shymko_hw_lesson23_030121_gof.Behavioral.Chain.ChainOfRespon
 
 
 abstract class Middleware {
-    private var next: Middleware? = null
-
+    lateinit var next: Middleware
     /**
      * Builds chains of middleware objects.
      */
-    fun linkWith(next: Middleware?): Middleware? {
+    fun linkWith(next: Middleware): Middleware {
         this.next = next
         return next
     }
-
     /**
      * Subclasses will implement this method with concrete checks.
      */
-    abstract fun check(email: String?, password: String?): Boolean
-
+    abstract fun check(email: String, password: String): Boolean
     /**
      * Runs check on the next object in chain or ends traversing if we're in
      * last object in chain.
      */
-    protected fun checkNext(email: String?, password: String?): Boolean {
-        return if (next == null) {
-            true
-        } else next!!.check(email, password)
+    fun checkNext(email: String, password: String): Boolean {
+        return next.check(email, password)
     }
 }

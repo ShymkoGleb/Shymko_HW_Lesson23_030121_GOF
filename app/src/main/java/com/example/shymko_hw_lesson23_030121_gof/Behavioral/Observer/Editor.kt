@@ -4,8 +4,8 @@ import java.io.File
 
 class Editor {
     var events: EventManager
-    private var file: File? = null
-    fun openFile(filePath: String?) {
+    private lateinit var file: File
+    fun openFile(filePath: String) {
         file = File(filePath)
         events.notify("open", file)
     }
