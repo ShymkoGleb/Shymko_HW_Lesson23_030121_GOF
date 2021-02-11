@@ -14,19 +14,21 @@ class EventManager {
     }
 
     fun subscribe(eventType: String, listener: EventListener) {
-        val users: MutableList<EventListener> = listeners[eventType]!!
-        users.add(listener)
+        val users: MutableList<EventListener>? = listeners[eventType]
+        users?.add(listener)
     }
 
     fun unsubscribe(eventType: String, listener: EventListener) {
-        val users: MutableList<EventListener> = listeners[eventType]!!
-        users.remove(listener)
+        val users: MutableList<EventListener>? = listeners[eventType]
+        users?.remove(listener)
     }
 
-    fun notify(eventType: String, file: File?) {
-        val users: List<EventListener> = listeners[eventType]!!
-        for (listener in users) {
-            listener.update(eventType, file)
+    fun notify(eventType: String, file: File) {
+        val users: List<EventListener>? = listeners[eventType]
+        if (users != null) {
+            for (listener in users) {
+                listener.update(eventType, file)
+            }
         }
     }
 }

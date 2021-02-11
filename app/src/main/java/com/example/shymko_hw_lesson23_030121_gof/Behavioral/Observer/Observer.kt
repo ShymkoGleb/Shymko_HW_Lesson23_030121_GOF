@@ -18,7 +18,7 @@ class Property {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val property = Property()
     property.registerListener { new -> println("The new value is $new") }
 

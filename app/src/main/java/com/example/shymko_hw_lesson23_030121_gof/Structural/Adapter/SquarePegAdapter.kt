@@ -12,5 +12,4 @@ class SquarePegAdapter(private val peg: SquarePeg) : RoundPeg() {
         set(radius) {
             super.radius = radius
         }
-
 }

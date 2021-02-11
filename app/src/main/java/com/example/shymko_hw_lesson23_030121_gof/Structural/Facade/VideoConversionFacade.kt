@@ -1,16 +1,12 @@
 package com.example.shymko_hw_lesson23_030121_gof.Structural.Facade
 
-import android.support.v4.app.RemoteActionCompatParcelizer.read
-import android.system.Os.read
-
 import com.example.shymko_hw_lesson23_030121_gof.Structural.Facade.CodecFactory.extract
 import java.io.File
 
-
 class VideoConversionFacade {
-    fun convertVideo(fileName: String?, format: String): File {
+    fun convertVideo(fileName: String, format: String): File {
         println("VideoConversionFacade: conversion started.")
-        val file = VideoFile(fileName!!)
+        val file = VideoFile(fileName)
         val sourceCodec = extract(file)
         val destinationCodec: Codec
         destinationCodec = if (format == "mp4") {

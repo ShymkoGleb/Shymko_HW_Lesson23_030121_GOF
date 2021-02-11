@@ -7,5 +7,4 @@ class SquarePeg(val width: Int) {
             result = Math.pow(width.toDouble(), 2.0)
             return result
         }
-
 }

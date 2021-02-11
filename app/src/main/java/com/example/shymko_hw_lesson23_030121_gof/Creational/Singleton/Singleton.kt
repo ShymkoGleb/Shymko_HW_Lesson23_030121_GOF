@@ -9,7 +9,7 @@ fun main() {
 }
 
 fun fun1() {
-    val word = "kotlin"
+    val word = "pattern"
     println("$word is ${Dictionary.getDefinition(word)}")
 }
 
